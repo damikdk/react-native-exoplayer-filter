@@ -98,16 +98,6 @@ class FilterVideoViewManager : SimpleViewManager<EPlayerView>() {
         }
     }
 
-    @ReactMethod
-    fun seek(ePlayerView: EPlayerView, seek: Float) {
-        ePlayerView.seekTo((seek * 1000.0f).roundToInt())
-    }
-
-    @ReactProp(name = "restartTo")
-    fun restart(ePlayerView: EPlayerView, toTime: Float) {
-        ePlayerView.seekTo((toTime * 1000.0f).roundToInt())
-    }
-
     companion object {
         const val REACT_CLASS = "FilterVideo"
     }

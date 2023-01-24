@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by sudamasayuki on 2017/05/16.
  */
-public class EPlayerView extends GLSurfaceView implements VideoListener, MediaController.MediaPlayerControl {
+public class EPlayerView extends GLSurfaceView implements VideoListener {
 
     private final static String TAG = EPlayerView.class.getSimpleName();
 
@@ -100,19 +100,19 @@ public class EPlayerView extends GLSurfaceView implements VideoListener, MediaCo
     }
 
     public static void resetAllPlayers(EPlayerView exceptionView) {
-        allInstances.forEach(player -> {
-            if (exceptionView == player) {
-                Log.e(TAG, String.valueOf(player));
+        allInstances.forEach(playerView -> {
+            if (exceptionView == playerView) {
+                Log.e(TAG, String.valueOf(playerView));
                 return;
             }
 
-            player.seekTo(0);
+            playerView.player.seekTo(0);
         });
     }
 
     public static void resetAllPlayers() {
-        allInstances.forEach(player -> {
-            player.seekTo(0);
+        allInstances.forEach(playerView -> {
+            playerView.player.seekTo(0);
         });
     }
 
@@ -165,60 +165,4 @@ public class EPlayerView extends GLSurfaceView implements VideoListener, MediaCo
     @Override
     public void onRenderedFirstFrame() {
     }
-
-    @Override
-    public void start() {
-        // Never called lol
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public int getDuration() {
-        return 0;
-    }
-
-    @Override
-    public int getCurrentPosition() {
-        return (int) player.getCurrentPosition();
-    }
-
-    @Override
-    public void seekTo(int pos) {
-        player.seekTo(0);
-    }
-
-    @Override
-    public boolean isPlaying() {
-        return false;
-    }
-
-    @Override
-    public int getBufferPercentage() {
-        return 0;
-    }
-
-    @Override
-    public boolean canPause() {
-        return false;
-    }
-
-    @Override
-    public boolean canSeekBackward() {
-        return false;
-    }
-
-    @Override
-    public boolean canSeekForward() {
-        return false;
-    }
-
-    @Override
-    public int getAudioSessionId() {
-        return 0;
-    }
-
 }
